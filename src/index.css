@@ -76,3 +76,17 @@ ol, ul {
     background-color: #ff6c80;
     color: #ffffff;
 }
+
+.resultDialog {
+    position: fixed;
+    z-index: 200;
+    top: 40%;
+    max-width: 90%;
+    width: 200px;
+    height: auto;
+    border: none;
+}
+
+.resultDialog p {
+    font-weight: bold;
+}

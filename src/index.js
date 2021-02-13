@@ -11,6 +11,20 @@ function Square(props) {
   );
 }
 
+// モーダル
+class Modal extends React.Component {
+  render() {
+    return (
+      <dialog
+        open={this.props.open}
+        className="resultDialog">
+        <h2>Game Set</h2>
+        <p>{this.props.message}</p>
+      </dialog>
+    )
+  }
+}
+
 // 盤面
 class Board extends React.Component {
   // マス目の内容
@@ -105,7 +119,9 @@ class Game extends React.Component {
     });
 
     let status;
+    let finished = false;
     if (winner) {
+      finished = true;
       status = 'Winner: ' + winner;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -124,6 +140,9 @@ class Game extends React.Component {
           <div>{status}</div>
           <div>{moves}</div>
         </div>
+        <Modal
+          open={finished}
+          message={status}/>
       </div>
     );
   }
