@@ -71,3 +71,8 @@ ol, ul {
     padding: 5px 10px;
     border-radius: 5px;
 }
+
+.game-info .nowMove {
+    background-color: #ff6c80;
+    color: #ffffff;
+}
