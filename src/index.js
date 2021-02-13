@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// マス
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -10,7 +11,9 @@ function Square(props) {
   );
 }
 
+// 盤面
 class Board extends React.Component {
+  // マス目の内容
   renderSquare(i) {
     return <Square
       value={this.props.squares[i]}
@@ -18,6 +21,7 @@ class Board extends React.Component {
     />;
   }
 
+  // 盤面
   render() {
     return (
       <div>
@@ -41,6 +45,7 @@ class Board extends React.Component {
   }
 }
 
+// ゲームの進行処理
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -53,6 +58,7 @@ class Game extends React.Component {
     };
   }
 
+  // クリック時の処理
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -70,6 +76,7 @@ class Game extends React.Component {
     });
   }
 
+  // タイムトラベル機能
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -85,7 +92,7 @@ class Game extends React.Component {
     const moves = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move :
-        'Go to game start';
+        'Start Over';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -102,6 +109,7 @@ class Game extends React.Component {
 
     return (
       <div className="game">
+        <h1>TicTac</h1>
         <div className="game-board">
           <Board
             squares={current.squares}
@@ -110,7 +118,7 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <div>{moves}</div>
         </div>
       </div>
     );
